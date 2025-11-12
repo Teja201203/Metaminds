@@ -1,0 +1,2110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Agency v20 (Admin & Clients)</title>
+    <script src="/_sdk/data_sdk.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body class="bg-gray-50">
+<div class="fixed top-4 left-4 z-50"><span class="version-badge">v20</span>
+</div>
+<div id="toast" class="toast">
+    <div class="flex items-center gap-3"><i class="fas fa-check-circle text-green-500 text-xl"></i> <span id="toast-message"></span>
+    </div>
+</div>
+<button id="floating-action" class="floating-action hidden" onclick="navigateTo('admin-dashboard')" title="Admin Dashboard"> <i class="fas fa-cog text-xl"></i>
+    <div id="notification-dot" class="notification-dot hidden"></div></button>
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container-responsive">
+        <div class="flex justify-between items-center h-16 md:h-20">
+
+            <div class="flex items-center gap-2 md:gap-3" id="company-logo" onclick="handleLogoClick()">
+                <img src="images/logo.png"
+                     alt="MetaMinds Logo" class="w-14 h-14 md:w-20 md:h-20 rounded-xl shadow-md cursor-pointer object-contain bg-white p-2">
+                <span id="nav-company-name" class="text-xl md:text-2xl font-extrabold gradient-text cursor-pointer tracking-wide">MetaMindsPvtLtd</span>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('home')">Home</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('about')">About Us</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('services')">Services</a>
+
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('portfolio')">Portfolio</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('blog')">Blog</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('testimonials')">Testimonials</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('careers')">Careers</a>
+
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base" onclick="navigateTo('contact')">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-3">
+                <button id="auth-button" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors hidden lg:block" onclick="showAuthModal()">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                </button>
+                <button id="mobile-menu-button" class="p-2 text-gray-700 hover:text-blue-600 transition-colors lg:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="mobile-menu" class="nav-mobile-menu absolute top-16 md:top-20 left-0 w-full bg-white shadow-lg lg:hidden z-40 p-4 space-y-2">
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('home')"><i class="fas fa-home mr-2 text-blue-600"></i>Home</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('about')"><i class="fas fa-info-circle mr-2 text-blue-600"></i>About Us</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('services')"><i class="fas fa-cogs mr-2 text-blue-600"></i>Services</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('portfolio')"><i class="fas fa-briefcase mr-2 text-blue-600"></i>Portfolio</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('blog')"><i class="fas fa-blog mr-2 text-blue-600"></i>Blog</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('testimonials')"><i class="fas fa-star mr-2 text-blue-600"></i>Testimonials</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('careers')"><i class="fas fa-users mr-2 text-blue-600"></i>Careers</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="navigateTo('contact')"><i class="fas fa-envelope mr-2 text-blue-600"></i>Contact</a>
+        <button id="auth-button-mobile" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors mt-4" onclick="showAuthModal()">
+            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+        </button>
+    </div>
+</nav>
+
+<main>
+    <section id="home-page" class="page-section active">
+        <div class="gradient-bg py-responsive text-white">
+            <div class="container-responsive grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4" id="hero-headline">
+                        Transform Your Digital Presence
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90" id="hero-subheadline">
+                        Innovative marketing solutions that drive real results
+                    </p>
+                    <button id="cta-button" class="btn-primary text-white px-8 py-3 rounded-lg font-medium text-lg hover-lift animate-bounce-in animate-delay-300" onclick="navigateTo('contact')">
+                        Get Started Today
+                    </button>
+                    <div class="flex gap-4 mt-8">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chart-line text-green-400"></i>
+                            <span>Data-Driven</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-rocket text-yellow-400"></i>
+                            <span>High Impact</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-handshake text-pink-400"></i>
+                            <span>Trusted Partner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block animate-fade-in-right">
+                    <div class="w-full aspect-square bg-white bg-opacity-10 rounded-3xl p-8 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+                        <i class="fas fa-globe-americas text-9xl text-white opacity-80 animate-float"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="services-overview-section" class="py-responsive bg-white">
+            <div class="container-responsive text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 gradient-text animate-fade-in-up">What We Do Best</h2>
+                <p class="text-xl text-gray-600 mb-12 animate-fade-in-up animate-delay-200">A spectrum of services tailored to your digital goals.</p>
+                <div id="services-overview-grid" class="grid grid-responsive-1 grid-responsive-2 grid-responsive-3 gap-8">
+                </div>
+                <button class="btn-primary text-white px-8 py-3 rounded-lg font-medium text-lg mt-12 hover-lift animate-scale-in animate-delay-500" onclick="navigateTo('services')">
+                    Explore All Services
+                </button>
+            </div>
+        </section>
+
+        <section id="clients-section" class="py-responsive bg-gray-50">
+            <div class="container-responsive text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 gradient-text animate-fade-in-up">Our Valued Clients</h2>
+                <p class="text-xl text-gray-600 mb-12 animate-fade-in-up animate-delay-200">Partnerships that define success and trust across industries.</p>
+                <div id="clients-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-12 items-center justify-items-center">
+                    <div class="col-span-full text-center py-12" id="clients-empty-state">
+                        <i class="fas fa-handshake text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-500 mb-2">No Clients Added Yet</h3>
+                        <p class="text-gray-400">Our esteemed client list will be displayed here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section id="services-page" class="page-section">
+        <div class="container-responsive py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Our Core Digital Services</h1>
+                <div class="bg-gradient-to-r from-blue-600 to-green-600 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> The power to transform is yours 🚀 </div>
+                <p class="text-xl text-gray-600 animate-fade-in-up animate-delay-400">Customized strategies for every stage of your business growth.</p>
+            </div>
+            <div class="flex justify-center flex-wrap gap-4 mb-12">
+                <button class="service-filter-btn px-6 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium text-lg" data-category="all" onclick="filterServices('all')">All</button>
+                <button class="service-filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors font-medium text-lg" data-category="strategy" onclick="filterServices('strategy')">Strategy</button>
+                <button class="service-filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors font-medium text-lg" data-category="marketing" onclick="filterServices('marketing')">Marketing</button>
+                <button class="service-filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors font-medium text-lg" data-category="design" onclick="filterServices('design')">Design</button>
+                <button class="service-filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors font-medium text-lg" data-category="content" onclick="filterServices('content')">Content</button>
+            </div>
+
+            <div id="services-grid" class="grid grid-responsive-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up" data-category="strategy" onclick="showServiceModal('audit')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in"><i class="fas fa-search-dollar text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Market Audit</h3>
+                    <p class="text-gray-600">In-depth analysis of your current market position</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Start with a clear view 🔍 </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-100" data-category="strategy" onclick="showServiceModal('consulting')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-100"><i class="fas fa-brain text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Strategic Consulting</h3>
+                    <p class="text-gray-600">Expert guidance to plot your path to digital domination</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Your success blueprint 🗺️ </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-200" data-category="marketing" onclick="showServiceModal('seo')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-200"><i class="fas fa-magnifying-glass-chart text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">SEO Optimization</h3>
+                    <p class="text-gray-600">Boosting your visibility with cutting-edge search engine techniques</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Be found first 🥇 </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up" data-category="marketing" onclick="showServiceModal('ads')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in"><i class="fas fa-bullhorn text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">PPC & Paid Ads</h3>
+                    <p class="text-gray-600">Maximize ROI with targeted pay-per-click advertising campaigns</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Precision targeting 🎯 </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-100" data-category="design" onclick="showServiceModal('web-design')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-100"><i class="fas fa-palette text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Web Design</h3>
+                    <p class="text-gray-600">Creating stunning, functional, and conversion-optimized websites</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> A beautiful digital home 🏠 </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-200" data-category="design" onclick="showServiceModal('branding')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-200"><i class="fas fa-lightbulb text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Brand Identity</h3>
+                    <p class="text-gray-600">Developing a cohesive and powerful brand image</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> More than a logo ✨ </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up" data-category="content" onclick="showServiceModal('social-media')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in"><i class="fas fa-share-alt text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Social Media</h3>
+                    <p class="text-gray-600">Strategy, content creation, and management for all platforms</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Engaging your audience 🗣️ </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-100" data-category="content" onclick="showServiceModal('youtube')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-100"><i class="fab fa-youtube text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">YouTube Channel</h3>
+                    <p class="text-gray-600">YouTube channel creation and content management</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Next viral sensation 🔥 </div>
+                </div>
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up animate-delay-100" data-category="content" onclick="showServiceModal('podcast')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in animate-delay-200"><i class="fas fa-podcast text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">Podcast</h3>
+                    <p class="text-gray-600">Podcast production and distribution services</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> Voices that matter 🎙️ </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-page" class="page-section">
+        <div class="max-w-7xl mx-auto
+ px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">About Our Digital Dynasty</h1>
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> We don't just create content, we create impact 💥 </div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-left">
+                    <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
+                    <p class="text-lg text-gray-600 mb-6" id="about-description">
+                        MetaMinds Pvt Ltd is a dynamic digital marketing agency committed to providing innovative, results-driven strategies. We leverage the latest technology and data analytics to ensure our clients not only meet but exceed their digital goals.
+                    </p>
+                    <h2 class="text-3xl font-bold mb-4 mt-8">Our Mission</h2>
+                    <p class="text-lg text-gray-600 mb-6" id="about-mission">
+                        To empower businesses of all sizes to navigate the complex digital landscape, building strong online presences and achieving measurable growth through transparent, ethical, and creative marketing.
+                    </p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-2xl hover-lift animate-fade-in-right">
+                    <h3 class="text-3xl font-bold gradient-text mb-6">Why Choose Us?</h3>
+                    <ul class="space-y-4 text-lg text-gray-700">
+                        <li class="flex items-center gap-3 animate-fade-in-left animate-delay-300"><i class="fas fa-check-circle text-green-400 animate-bounce-in"></i> <span>Innovation & Creativity 💡</span></li>
+                        <li class="flex items-center gap-3 animate-fade-in-left animate-delay-400"><i class="fas fa-check-circle text-green-400 animate-bounce-in"></i> <span>Client-Centric Approach 🤝</span></li>
+                        <li class="flex items-center gap-3 animate-fade-in-left animate-delay-500"><i class="fas fa-check-circle text-green-400 animate-bounce-in"></i> <span>Data-Driven Results 📊</span></li>
+                        <li class="flex items-center gap-3 animate-fade-in-left animate-delay-600"><i class="fas fa-check-circle text-green-400 animate-bounce-in"></i> <span>Transparency & Trust 🔒</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Our Digital Masterpieces</h1>
+                <div class="bg-gradient-to-r from-green-500 to-blue-600 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> Every project tells a story of success 📖 </div>
+                <p class="text-xl text-gray-600 animate-fade-in-up animate-delay-400">From concept to conversion - Witness the magic
+                    we create ✨</p>
+            </div>
+            <div id="portfolio-search-bar" class="mb-8 bg-white rounded-lg shadow-md p-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1"><input type="text" id="portfolio-search" placeholder="Search projects..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                    <select id="portfolio-filter-category" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">All Categories</option>
+                        <option value="web-design">Web Design</option>
+                        <option value="seo">SEO</option>
+                        <option value="content">Content Marketing</option>
+                        <option value="social">Social Media</option>
+                    </select>
+                    <button onclick="clearPortfolioSearch()" class="px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"> <i class="fas fa-times"></i> </button>
+                </div>
+            </div>
+            <div id="portfolio-admin-controls" class="hidden mb-8 p-6 bg-blue-50 rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Manage Portfolio</h3>
+                    <div class="flex gap-3"><button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700" onclick="navigateTo('admin-dashboard')"> <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard </button> <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showAddPortfolioModal()"> <i class="fas fa-plus mr-2"></i>Add Project </button> </div>
+                </div>
+            </div>
+            <div id="portfolio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </div>
+    </section>
+
+    <section id="blog-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Digital Insights & Knowledge Hub</h1>
+                <div class="bg-gradient-to-r from-red-500 to-yellow-500 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> Stay ahead of the curve with our expert articles 📰 </div>
+            </div>
+            <div id="blog-search-bar" class="mb-8 bg-white rounded-lg shadow-md p-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1"><input type="text" id="blog-search" placeholder="Search articles..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                    <select id="blog-filter-category" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">All Topics</option>
+                        <option value="seo">SEO</option>
+                        <option value="social">Social Media</option>
+                        <option value="content">Content Marketing</option>
+                        <option value="analytics">Analytics</option>
+                    </select>
+                    <button onclick="clearBlogSearch()" class="px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"> <i class="fas fa-times"></i> </button>
+                </div>
+            </div>
+            <div id="blog-admin-controls" class="hidden mb-8 p-6 bg-blue-50 rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Manage Blog</h3>
+                    <div class="flex gap-3"><button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700" onclick="navigateTo('admin-dashboard')"> <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard </button> <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showAddBlogModal()"> <i class="fas fa-plus mr-2"></i>Add Article </button> </div>
+                </div>
+            </div>
+            <div id="blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Success Stories & Love Letters</h1>
+                <div class="bg-gradient-to-r from-pink-500 to-purple-600 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> Happy clients are our greatest achievement 💝 </div>
+                <p class="text-xl text-gray-600 animate-fade-in-up animate-delay-400">See what our partners have to say about working with MetaMinds.</p>
+            </div>
+            <div id="testimonials-admin-controls" class="hidden mb-8 p-6 bg-blue-50 rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Manage Testimonials</h3>
+                    <div class="flex gap-3"><button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700" onclick="navigateTo('admin-dashboard')"> <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard </button> <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showAddTestimonialModal()"> <i class="fas fa-plus mr-2"></i>Add Testimonial </button> </div>
+                </div>
+            </div>
+            <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </div>
+    </section>
+
+    <section id="careers-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Join the MetaMinds Team</h1>
+                <div class="bg-gradient-to-r from-teal-500 to-blue-500 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> Build your future with us 🛠️ </div>
+                <p class="text-xl text-gray-600 animate-fade-in-up animate-delay-400">We are always looking for passionate and talented individuals.</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-12 mb-12">
+                <div class="flex items-start gap-4 animate-fade-in-left animate-delay-100"><i class="fas fa-money-bill-wave text-3xl animate-bounce-in"></i> <div> <h3 class="font-bold text-xl mb-2">Competitive Pay 💰</h3> <p>Excellent salaries and performance bonuses</p> </div> </div>
+                <div class="flex items-start gap-4 animate-fade-in-left animate-delay-200"><i class="fas fa-graduation-cap text-3xl animate-bounce-in animate-delay-300"></i> <div> <h3 class="font-bold text-xl mb-2">Career Growth 📈</h3> <p>Continuous learning and advancement opportunities</p> </div> </div>
+                <div class="flex items-start gap-4 animate-fade-in-right animate-delay-400"><i class="fas fa-heart text-3xl animate-bounce-in animate-delay-500"></i> <div> <h3 class="font-bold text-xl mb-2">Work-Life Balance ⚖️</h3> <p>Flexible schedules and remote work options</p> </div> </div>
+            </div>
+            <div id="careers-admin-controls" class="hidden mb-8 p-6 bg-blue-50 rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Manage Job Openings</h3>
+                    <div class="flex gap-3"><button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700" onclick="navigateTo('admin-dashboard')"> <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard </button> <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showAddJobModal()"> <i class="fas fa-plus mr-2"></i>Add Job Opening </button> </div>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h2 class="text-3xl
+ font-bold mb-8">Current Openings</h2>
+                    <div id="careers-grid" class="space-y-6">
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Apply Now</h2>
+                    <p class="text-gray-600 mb-6">Submit your application and join our amazing team!</p>
+                    <form id="career-application-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div><label for="applicant-first-name" class="block text-gray-700 font-medium mb-2">First Name</label> <input type="text" id="applicant-first-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                            <div><label for="applicant-last-name" class="block text-gray-700 font-medium mb-2">Last Name</label> <input type="text" id="applicant-last-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        </div>
+                        <div><label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email Address</label> <input type="email" id="applicant-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone Number</label> <input type="tel" id="applicant-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="applicant-position" class="block text-gray-700 font-medium mb-2">Applying For</label> <select id="applicant-position" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select a Position</option>
+                        </select> </div>
+                        <div><label for="resume-upload" class="block text-gray-700 font-medium mb-2">Upload Resume (PDF/DOCX)</label> <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"> </div>
+                        <div><label for="cover-letter" class="block text-gray-700 font-medium mb-2">Cover Letter</label> <textarea id="cover-letter" required rows="5" placeholder="Tell us why you're perfect for this role..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea> </div>
+                        <div><label for="salary-expectation" class="block text-gray-700 font-medium mb-2">Salary Expectation (Optional)</label> <input type="text" id="salary-expectation" placeholder="e.g., $50,000 - $60,000" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="start-date" class="block text-gray-700 font-medium mb-2">Available Start Date</label> <input type="date" id="start-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div><button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg font-medium w-full"> <span id="career-submit-text">Submit Application</span> <div id="career-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6 gradient-text animate-fade-in-up">Let's Build Something Great Together</h1>
+                <div class="bg-gradient-to-r from-purple-500 to-blue-600 animate-gradient text-white px-8 py-4 rounded-full inline-block mb-8 animate-bounce-in animate-delay-200 hover-wiggle"> Start your digital journey today! 📞 </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-lg animate-fade-in-left">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Contact Information</h2>
+                    <div class="space-y-6 text-lg">
+                        <div class="flex items-start gap-4"><i class="fas fa-envelope text-2xl text-blue-600 mt-1"></i> <div> <span class="block font-bold">Email Us</span> <a href="mailto:info@metaminds.com" class="text-gray-600 hover:text-blue-600" id="contact-info-email">info@metaminds.com</a> </div> </div>
+                        <div class="flex items-start gap-4"><i class="fas fa-phone-alt text-2xl text-blue-600 mt-1"></i> <div> <span class="block font-bold">Call Us</span> <a href="tel:+1234567890" class="text-gray-600 hover:text-blue-600" id="contact-info-phone">+1 (234) 567-890</a> </div> </div>
+                        <div class="flex items-start gap-4"><i class="fas fa-map-marker-alt text-2xl text-blue-600 mt-1"></i> <div> <span class="block font-bold">Our Office</span> <p class="text-gray-600" id="contact-info-address">123 Digital Blvd<br>Suite 400<br>San Francisco, CA 94107</p> </div> </div>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 hidden" id="edit-contact-info-btn">
+                        <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showEditContactModal()"> <i class="fas fa-edit mr-2"></i>Edit Contact Info </button>
+                    </div>
+                </div>
+                <div class="animate-fade-in-right">
+                    <h2 class="text-3xl font-bold mb-6 animate-fade-in-up">Send Us a Message 📧</h2>
+                    <form id="contact-form" class="space-y-6 animate-fade-in-up animate-delay-200">
+                        <div><label for="contact-name" class="block text-gray-700 font-medium mb-2">Your Name</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="contact-email" class="block text-gray-700 font-medium mb-2">Email Address</label> <input type="email" id="contact-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="contact-phone" class="block text-gray-700 font-medium mb-2">Phone Number</label> <input type="tel" id="contact-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                        <div><label for="contact-priority"
+                                    class="block text-gray-700 font-medium mb-2">Priority Level</label> <select id="contact-priority" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                            <option value="low">Low Priority</option>
+                        </select> </div>
+                        <div><label for="contact-message" class="block text-gray-700 font-medium mb-2">Your Message</label> <textarea id="contact-message" required rows="5" placeholder="Tell us about your project..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea> </div><button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg font-medium w-full"> <span id="contact-submit-text">Send Message</span> <div id="contact-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients-management-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-4xl font-bold gradient-text">Client Management</h1>
+                    <p class="text-gray-600 mt-2">Add, edit, and remove clients for the home page display.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700" onclick="navigateTo('admin-dashboard')">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                    <button class="btn-primary text-white px-4 py-2 rounded-lg" onclick="showAddClientModal()">
+                        <i class="fas fa-plus mr-2"></i>Add New Client
+                    </button>
+                </div>
+            </div>
+            <div id="clients-admin-list" class="space-y-4">
+            </div>
+        </div>
+    </section>
+    <section id="admin-dashboard-page" class="page-section">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-5xl font-bold gradient-text">Admin Dashboard</h1>
+                    <p class="text-gray-600 mt-2">Version 20 - Enhanced Management System</p>
+                </div>
+                <div class="flex items-center gap-4"><span class="text-gray-500 hidden md:inline">Logged in as: <span id="admin-user-name" class="font-bold">Admin User</span></span> <button onclick="handleLogout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"> <i class="fas fa-sign-out-alt mr-2"></i>Logout </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-2xl">
+                <nav class="flex border-b border-gray-200">
+                    <button onclick="switchDashboardTab('overview')" class="dashboard-tab py-4 px-6 border-b-2 border-blue-500 text-blue-600 font-medium active"> <i class="fas fa-chart-line mr-2"></i>Overview </button>
+                    <button onclick="switchDashboardTab('projects')" class="dashboard-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium"> <i class="fas fa-briefcase mr-2"></i>Projects & Content </button>
+                    <button onclick="switchDashboardTab('contacts')" class="dashboard-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium"> <i class="fas fa-inbox mr-2"></i>Inquiries & Apps <span id="contacts-badge" class="ml-2 admin-badge text-white bg-red-500 py-1 px-2 rounded-full text-xs">0</span> </button>
+                    <button onclick="switchDashboardTab('settings')" class="dashboard-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium"> <i class="fas fa-cog mr-2"></i>Settings </button>
+                </nav>
+
+                <div id="dashboard-overview" class="dashboard-tab-content p-6">
+                    <h3 class="text-2xl font-bold mb-6">Key Metrics</h3>
+                    <div id="overview-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    </div>
+                </div>
+
+                <div id="dashboard-projects" class="dashboard-tab-content p-6 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold">Content & Project Management</h3>
+                        <div class="flex gap-3"><button onclick="showAddPortfolioModal()" class="btn-primary text-white px-4 py-2 rounded-lg"> <i class="fas fa-plus mr-2"></i>Add Project </button> <button onclick="showAddBlogModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"> <i class="fas fa-plus mr-2"></i>Add Blog </button> <button onclick="showAddTestimonialModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"> <i class="fas fa-plus mr-2"></i>Add Testimonial </button>
+                        </div>
+                    </div>
+                    <div class="mb-6 bg-gray-50 rounded-lg p-4">
+                        <div class="flex
+ flex-col md:flex-row gap-4">
+                            <div class="flex-1"><input type="text" id="admin-search" placeholder="Search content..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                            <div class="flex gap-2"><select id="admin-filter-type" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">All Content Types</option>
+                                <option value="portfolio">Portfolio</option>
+                                <option value="blog">Blog</option>
+                                <option value="testimonial">Testimonial</option>
+                                <option value="career">Job Opening</option>
+                                <option value="client">Client</option>
+                            </select> <button onclick="clearAdminSearch()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"> <i class="fas fa-times"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="admin-projects-list" class="space-y-4">
+                    </div>
+                </div>
+
+                <div id="dashboard-contacts" class="dashboard-tab-content p-6 hidden">
+                    <h3 class="text-2xl font-bold mb-6">Contact & Application Inbox</h3>
+                    <div id="admin-contacts-list" class="space-y-4">
+                    </div>
+                </div>
+
+                <div id="dashboard-settings" class="dashboard-tab-content p-6 hidden">
+                    <h3 class="text-2xl font-bold mb-6">Content Management</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="text-lg font-bold mb-4">Quick Actions</h4>
+                            <div class="space-y-3"><button onclick="navigateTo('portfolio')" class="w-full text-left px-4 py-3 bg-white rounded-lg hover:bg-gray-100 border"> <i class="fas fa-briefcase mr-3 text-blue-600"></i>Manage Portfolio </button> <button onclick="navigateTo('blog')" class="w-full text-left px-4 py-3 bg-white rounded-lg hover:bg-gray-100 border"> <i class="fas fa-newspaper mr-3 text-green-600"></i>Manage Blog </button> <button onclick="navigateTo('testimonials')" class="w-full text-left px-4 py-3 bg-white rounded-lg hover:bg-gray-100 border"> <i class="fas fa-star mr-3 text-purple-600"></i>Manage Testimonials </button> <button onclick="navigateTo('careers')" class="w-full text-left px-4 py-3 bg-white rounded-lg hover:bg-gray-100 border"> <i class="fas fa-users mr-3 text-orange-600"></i>Manage Careers
+                            </button> <button onclick="navigateTo('clients-management')" class="w-full text-left px-4 py-3 bg-white rounded-lg hover:bg-gray-100 border"> <i class="fas fa-handshake mr-3 text-red-600"></i>Manage Clients </button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="text-lg font-bold mb-4">Storage Usage</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between"><span>Total Items</span> <span class="font-bold" id="storage-total">0/999</span> </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div id="storage-bar" class="bg-blue-600 h-2 rounded-full" style="width: 0%;"></div>
+                                </div>
+                                <div class="flex justify-between"><span>Data Size</span> <span class="font-bold" id="storage-size">0 KB</span> </div>
+                                <button onclick="clearAllData()" class="w-full text-left px-4 py-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 border border-red-300 transition-colors"> <i class="fas fa-trash-alt mr-3"></i>Clear All Content Data </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-12">
+            <div>
+                <h4 class="text-xl font-bold mb-4" id="footer-company-name">MetaMindsPvtLtd</h4>
+                <p class="text-gray-400 mb-4">Innovative marketing solutions that drive real results.</p>
+                <div class="flex gap-4">
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white social-icon hover-bounce"><i class="fab fa-twitter text-xl"></i> </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center text-white social-icon hover-bounce"><i class="fab fa-linkedin-in text-xl"></i> </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white social-icon hover-bounce"><i class="fab fa-instagram text-xl"></i> </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white social-icon hover-bounce"><i class="fab fa-facebook-f text-xl"></i> </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white social-icon hover-bounce"><i class="fab fa-youtube text-xl"></i> </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('home')">Home</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('services')">Services</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('portfolio')">Portfolio</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('contact')">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Resources</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('blog')">Blog</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="navigateTo('careers')">Careers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Get In Touch</h4>
+                <p class="text-gray-400 mb-2" id="footer-contact-email">Email: info@metaminds.com</p>
+                <p class="text-gray-400 mb-4" id="footer-contact-phone">Phone: +1 (234) 567-890</p>
+                <a href="#" class="btn-primary text-white px-6 py-2 rounded-lg font-medium" onclick="navigateTo('contact')">Request a Quote</a>
+            </div>
+        </div>
+        <div class="text-center border-t border-gray-700 mt-8 pt-8">
+            <p class="text-gray-400 text-sm" id="footer-copyright">© 2024 MetaMinds Pvt Ltd. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<div id="auth-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeAuthModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-3xl font-bold mb-6 gradient-text" id="auth-modal-title">Welcome Back</h2>
+
+        <div id="customer-signin-section">
+            <form id="customer-signin-form" class="space-y-4">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-user-lock text-blue-600 text-2xl"></i> </div>
+                    <p class="text-gray-600">Sign in to access your projects and documents</p>
+                </div>
+                <div><label for="signin-email" class="block text-gray-700 font-medium mb-2">Email Address</label> <input type="email" id="signin-email" required placeholder="Your email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                <div><label for="signin-password" class="block text-gray-700 font-medium mb-2">Password</label> <div class="relative"><input type="password" id="signin-password" required placeholder="Your password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" onclick="togglePasswordVisibility('signin-password', this)"> <i class="fas fa-eye"></i> </button> </div>
+                </div>
+                <div class="flex justify-between items-center"><label class="flex items-center gap-2"><input type="checkbox" id="remember-me" class="rounded text-blue-600"> <span class="text-sm text-gray-700">Remember Me</span></label> <a href="#" class="text-sm text-blue-600 hover:text-blue-700">Forgot Password?</a> </div><button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full"> <span id="signin-submit-text">Sign In</span> <div id="signin-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+                <div class="text-center mt-4"><p class="text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:text-blue-700" onclick="showSignup()">Sign Up</a></p></div>
+            </form>
+        </div>
+
+        <div id="customer-signup-section" class="hidden">
+            <form id="customer-signup-form" class="space-y-4">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-user-plus text-green-600 text-2xl"></i> </div>
+                    <p class="text-gray-600">Create your new MetaMinds customer account</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div><label for="signup-firstname" class="block text-gray-700 font-medium mb-2">First Name</label> <input type="text" id="signup-firstname" required placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                    <div><label for="signup-lastname" class="block text-gray-700 font-medium mb-2">Last Name</label> <input type="text" id="signup-lastname" required placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                </div>
+                <div><label for="signup-email" class="block text-gray-700 font-medium mb-2">Email Address</label> <input type="email" id="signup-email" required placeholder="Your email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+                <div><label for="signup-password" class="block text-gray-700 font-medium mb-2">Password</label> <div class="relative"><input type="password" id="signup-password" required placeholder="Set password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" onclick="togglePasswordVisibility('signup-password', this)"> <i class="fas fa-eye"></i> </button> </div>
+                </div>
+                <div><label for="signup-confirm-password" class="block text-gray-700 font-medium mb-2">Confirm Password</label> <div class="relative"><input type="password" id="signup-confirm-password" required placeholder="Confirm password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" onclick="togglePasswordVisibility('signup-confirm-password', this)"> <i class="fas fa-eye"></i> </button> </div>
+                </div><button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full"> <span id="signup-submit-text">Sign Up</span> <div id="signup-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+                <div class="text-center mt-4"><p class="text-gray-600">Already have an account? <a href="#" class="text-blue-600 hover:text-blue-700" onclick="showSignin()">Sign In</a></p></div>
+            </form>
+        </div>
+
+        <div id="admin-login-section" class="hidden">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-user-shield text-red-600 text-2xl"></i> </div>
+                <h3 class="text-xl font-bold mb-2">Admin Access</h3>
+                <p class="text-gray-600">Administrative login for system management</p>
+            </div>
+            <form id="admin-login-form" class="space-y-4">
+                <div><label for="admin-username" class="block text-gray-700 font-medium mb-2">Username</label> <input type="text" id="admin-username" required placeholder="Admin username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"> </div>
+                <div><label for="admin-password" class="block text-gray-700 font-medium mb-2">Password</label> <div class="relative"><input type="password" id="admin-password" required placeholder="Admin password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"> <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500" onclick="togglePasswordVisibility('admin-password', this)"> <i class="fas fa-eye"></i> </button> </div>
+                </div>
+                <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium w-full hover:bg-red-700 transition-colors"> <span id="admin-login-text">Login as Admin</span> <div id="admin-login-loading" class="loading-spinner mx-auto hidden border-white border-t-red-700"></div></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="edit-contact-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal(document.getElementById('edit-contact-modal'))">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-3xl font-bold mb-6 gradient-text">Edit Contact Information</h2>
+        <form id="edit-contact-form" class="space-y-4">
+            <div><label for="edit-contact-email" class="block text-gray-700 font-medium mb-2">Email Address</label> <input type="email" id="edit-contact-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+            <div><label for="edit-contact-phone" class="block text-gray-700 font-medium mb-2">Phone Number</label> <input type="tel" id="edit-contact-phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+            <div><label for="edit-contact-address" class="block text-gray-700 font-medium mb-2">Address</label> <textarea id="edit-contact-address" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea> </div><button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full"> <span id="contact-edit-submit-text">Update Contact Information</span> <div id="contact-edit-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+        </form>
+    </div>
+</div>
+
+<div id="add-edit-content-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal(document.getElementById('add-edit-content-modal'))">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-3xl font-bold mb-6 gradient-text" id="content-modal-title">Add New Item</h2>
+        <form id="content-form" class="space-y-4">
+            <input type="hidden" id="content-id">
+            <input type="hidden" id="content-type">
+            <div><label for="content-title" class="block text-gray-700 font-medium mb-2">Title</label> <input type="text" id="content-title" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+            <div id="content-author-field"><label for="content-author" class="block text-gray-700 font-medium mb-2">Author/Source</label> <input type="text" id="content-author" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div>
+            <div id="content-category-field"><label for="content-category" class="block text-gray-700 font-medium mb-2">Category</label> <select id="content-category" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </select> </div>
+            <div id="content-description-field"><label for="content-description" class="block text-gray-700 font-medium mb-2">Description/Content</label> <textarea id="content-description" required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea> </div>
+            <div id="content-link-field"><label for="content-link" class="block text-gray-700 font-medium mb-2">Link/URL (Optional)</label> <input type="url" id="content-link" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"> </div><button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full"> <span id="content-submit-text">Submit</span> <div id="content-submit-loading" class="loading-spinner mx-auto hidden"></div></button>
+        </form>
+    </div>
+</div>
+
+<div id="add-edit-client-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal(document.getElementById('add-edit-client-modal'))">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 id="client-modal-title" class="text-3xl font-bold mb-6 gradient-text">Add New Client</h2>
+        <form id="client-form" class="space-y-4">
+            <input type="hidden" id="client-id">
+            <div>
+                <label for="client-name" class="block text-gray-700 font-medium mb-2">Client Name</label>
+                <input type="text" id="client-name" required placeholder="e.g., GlobalTech Solutions" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="client-logo-url" class="block text-gray-700 font-medium mb-2">Logo Icon (Font Awesome Class)</label>
+                <input type="text" id="client-logo-url" required value="fas fa-building" placeholder="e.g., fas fa-building" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <p class="text-sm text-gray-500 mt-2">Use a Font Awesome class (e.g., fas fa-rocket) in this simulated version.</p>
+            </div>
+            <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full">
+                <span id="client-submit-text">Add Client</span>
+                <div id="client-submit-loading" class="loading-spinner mx-auto hidden"></div>
+            </button>
+        </form>
+    </div>
+</div>
+<div id="service-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal(document.getElementById('service-modal'))">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="text-center mb-6">
+            <div id="service-modal-icon" class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas text-white text-3xl"></i> </div>
+            <h2 class="text-3xl font-bold mb-2 gradient-text" id="service-modal-title"></h2>
+            <p class="text-gray-600" id="service-modal-tagline"></p>
+        </div>
+        <div id="service-modal-description" class="text-gray-700 leading-relaxed space-y-4">
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-200">
+            <button class="btn-primary text-white px-6 py-3 rounded-lg font-medium w-full" onclick="navigateTo('contact')">
+                Request This Service
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="project-modal" class="modal" onclick="closeModal(this)">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal(document.getElementById('project-modal'))">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-3xl font-bold mb-4 gradient-text" id="project-modal-title"></h2>
+        <p class="text-gray-600 mb-6 border-b pb-4"><span class="font-bold">Client:</span> <span id="project-modal-client"></span> | <span class="font-bold">Category:</span> <span id="project-modal-category"></span></p>
+        <div class="aspect-video bg-gray-100 rounded-lg mb-6 flex items-center justify-center"> <i class="fas fa-image text-5xl text-gray-400"></i> </div>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6" id="project-modal-description"></p>
+        <a id="project-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center gap-2">View Live Project <i class="fas fa-external-link-alt text-sm"></i></a>
+    </div>
+</div>
+
+<script>
+    // Global state
+    let currentUser = null;
+    let isAdmin = false;
+    let allData = [];
+    let currentContentType = '';
+    let currentServiceType = '';
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+    let notificationCount = 0;
+
+    const defaultConfig = {
+        company_name: "MetaMinds",
+        tagline: "Transform Your Digital Presence",
+        hero_headline: "Transform Your Digital Presence",
+        hero_subheadline: "Innovative marketing solutions that drive real results",
+        cta_button_text: "Get Started Today",
+        contact_email: "info@metaminds.com",
+        contact_phone: "+1 (234) 567-890",
+        contact_address: "123 Digital Blvd\nSuite 400\nSan Francisco, CA 94107",
+        footer_text: "© 2024 MetaMinds Pvt Ltd. All rights reserved.",
+        about_description: "MetaMinds Pvt Ltd is a dynamic digital marketing agency committed to providing innovative, results-driven strategies. We leverage the latest technology and data analytics to ensure our clients not only meet but exceed their digital goals.",
+        about_mission: "To empower businesses of all sizes to navigate the complex digital landscape, building strong online presences and achieving measurable growth through transparent, ethical, and creative marketing.",
+        font_family: 'Inter',
+    };
+
+    const defaultData = {
+        config: [
+            // Only one config item is stored, always with __backendId: 'config-1'
+            {
+                __backendId: 'config-1',
+                type: 'config',
+                ...defaultConfig
+            }
+        ],
+        // NEW CLIENT DATA TYPE
+        client: [{
+            __backendId: 'c1',
+            type: 'client',
+            title: 'GlobalTech Solutions',
+            logo: 'fas fa-globe',
+            industry: 'Technology'
+        }, {
+            __backendId: 'c2',
+            type: 'client',
+            title: 'EcoHarvest Farms',
+            logo: 'fas fa-leaf',
+            industry: 'Agriculture'
+        }, {
+            __backendId: 'c3',
+            type: 'client',
+            title: 'UrbanDevelop Co.',
+            logo: 'fas fa-city',
+            industry: 'Real Estate'
+        }, {
+            __backendId: 'c4',
+            type: 'client',
+            title: 'AstroMedia Inc.',
+            logo: 'fas fa-rocket',
+            industry: 'Entertainment'
+        }, {
+            __backendId: 'c5',
+            type: 'client',
+            title: 'HealthFirst Clinics',
+            logo: 'fas fa-heartbeat',
+            industry: 'Healthcare'
+        }, {
+            __backendId: 'c6',
+            type: 'client',
+            title: 'FinancePro Group',
+            logo: 'fas fa-chart-line',
+            industry: 'Finance'
+        }, ],
+        portfolio: [{
+            __backendId: 'p1',
+            type: 'portfolio',
+            title: 'E-commerce Platform Relaunch',
+            content: 'A complete redesign and SEO overhaul for a major online retailer, resulting in a 40% boost in conversion.',
+            client: 'RetailGiant Inc.',
+            category: 'web-design',
+            link: 'https://example.com/project1'
+        }, {
+            __backendId: 'p2',
+            type: 'portfolio',
+            title: 'International SEO Strategy',
+            content: 'Executed a multi-lingual SEO campaign targeting five new global markets, achieving top 5 ranking for 100+ keywords.',
+            client: 'WorldTravelers Co.',
+            category: 'seo',
+            link: 'https://example.com/project2'
+        }, {
+            __backendId: 'p3',
+            type: 'portfolio',
+            title: 'Social Media Takeover',
+            content: 'Managed a viral content campaign on Instagram and TikTok, adding over 250,000 new followers in 3 months.',
+            client: 'QuickBite Foods',
+            category: 'social',
+            link: 'https://example.com/project3'
+        }, ],
+        blog: [{
+            __backendId: 'b1',
+            type: 'blog',
+            title: 'The Future of SEO is AI: What You Need to Know',
+            content: 'Exploring how generative AI is fundamentally changing search engine optimization strategies and best practices.',
+            author: 'Alex Johnson',
+            category: 'seo',
+            date: '2024-10-01',
+            link: 'https://example.com/blog1'
+        }, {
+            __backendId: 'b2',
+            type: 'blog',
+            title: '5 Ways to Double Your Conversion Rate with Better Copy',
+            content: 'Tips and tricks for persuasive writing that turns visitors into paying customers.',
+            author: 'Sarah Lee',
+            category: 'content',
+            date: '2024-09-20',
+            link: 'https://example.com/blog2'
+        }, ],
+        testimonial: [{
+            __backendId: 't1',
+            type: 'testimonial',
+            title: 'Exceptional Results & Partnership',
+            content: 'MetaMinds exceeded all our expectations. Their SEO strategy was unparalleled, boosting our organic traffic by over 200% in six months. A truly collaborative and professional team.',
+            author: 'Jane Doe, CEO of TechStart',
+            rating: 5
+        }, {
+            __backendId: 't2',
+            type: 'testimonial',
+            title: 'Creative and Data-Driven',
+            content: 'We hired them for a branding project and were blown away by the creativity and precision of their work. They nailed our new identity and messaging.',
+            author: 'John Smith, Marketing Director at FoodCo',
+            rating: 5
+        }, ],
+        career: [{
+            __backendId: 'cr1',
+            type: 'career',
+            title: 'Senior Full-Stack Developer',
+            content: 'We are looking for a skilled developer to lead our core web application projects. Must have 5+ years experience with React/Node.js.',
+            category: 'Full-time',
+            location: 'Remote',
+            date: '2024-10-15'
+        }, {
+            __backendId: 'cr2',
+            type: 'career',
+            title: 'Social Media Content Creator',
+            content: 'A creative mind is needed to generate engaging content for all major social platforms. Experience with video editing is a plus.',
+            category: 'Part-time',
+            location: 'San Francisco',
+            date: '2024-10-10'
+        }, ],
+        service: [{
+            __backendId: 's1',
+            type: 'service',
+            title: 'Market Audit',
+            tagline: 'Start with a clear view 🔍',
+            category: 'strategy',
+            icon: 'fas fa-search-dollar',
+            description: 'Our market audit service provides a comprehensive, data-driven analysis of your current market standing, competitive landscape, and digital performance. We identify key opportunities and critical gaps to inform your strategy, giving you the clarity needed for effective decision-making and sustainable growth.'
+        }, {
+            __backendId: 's2',
+            type: 'service',
+            title: 'Strategic Consulting',
+            tagline: 'Your success blueprint 🗺️',
+            category: 'strategy',
+            icon: 'fas fa-brain',
+            description: 'Gain access to our expert strategists who will work with you to plot a customized, high-impact digital blueprint. From funnel optimization to complete go-to-market plans, we provide the thought leadership to drive your digital domination.'
+        }, {
+            __backendId: 's3',
+            type: 'service',
+            title: 'SEO Optimization',
+            tagline: 'Be found first 🥇',
+            category: 'marketing',
+            icon: 'fas fa-magnifying-glass-chart',
+            description: 'We go beyond basic keywords. Our SEO service includes technical audits, content strategy, and link building to boost your visibility on search engines, ensuring your target audience finds you first. Achieve higher rankings and sustained organic traffic growth.'
+        }, {
+            __backendId: 's4',
+            type: 'service',
+            title: 'PPC & Paid Ads',
+            tagline: 'Precision targeting 🎯',
+            category: 'marketing',
+            icon: 'fas fa-bullhorn',
+            description: 'Maximize your advertising ROI with our finely-tuned PPC and paid ad campaigns. We specialize in platforms like Google Ads, Facebook, and LinkedIn, ensuring every dollar spent targets the right audience at the right time for maximum conversion.'
+        }, ],
+        contact: [], // Stores contact form submissions
+        application: [], // Stores job applications
+        'service-request': [] // Stores service request from modal
+    };
+
+    // --- Core Functions ---
+
+    async function initializePage() {
+        // Load data from SDK (simulated backend storage)
+        const storedData = await data_sdk.get(defaultData);
+        allData = Object.values(storedData).flat(); // Flatten all data types into a single array
+
+        // Check for admin login status (can be enhanced with persistent tokens)
+        const storedUser = localStorage.getItem('currentUser');
+        if (storedUser) {
+            currentUser = JSON.parse(storedUser);
+            isAdmin = currentUser.type === 'admin';
+            if (isAdmin) {
+                // Re-run the admin login process to show controls
+                updateAuthButtonForAdmin();
+                document.querySelectorAll('[id$="-admin-controls"]').forEach(el => { el.classList.remove('hidden'); });
+                document.getElementById('floating-action').classList.remove('hidden');
+                document.getElementById('edit-contact-info-btn').classList.remove('hidden');
+            } else {
+                updateAuthButtonForCustomer(currentUser);
+            }
+        }
+
+        // Apply configuration settings
+        applyConfig(allData.find(item => item.type === 'config'));
+
+        // Render content for all pages
+        renderServices();
+        renderPortfolio();
+        renderBlog();
+        renderTestimonials();
+        renderCareers();
+        renderContacts();
+        renderClients(); // NEW CLIENTS RENDER
+        renderAdminClients(); // NEW ADMIN CLIENTS RENDER
+        renderAdminProjectsList();
+        renderDashboardOverview();
+
+        // Set initial page view
+        const hash = window.location.hash.substring(1) || 'home';
+        navigateTo(hash);
+    }
+
+    // Apply configuration settings from the 'config' data item
+    function applyConfig(configItem) {
+        const config = configItem || defaultConfig;
+
+        // Simple data fallbacks for all config fields
+        document.getElementById('nav-company-name').textContent = config.company_name || defaultConfig.company_name;
+        document.getElementById('hero-headline').textContent = config.hero_headline || defaultConfig.hero_headline;
+        document.getElementById('hero-subheadline').textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+        document.getElementById('cta-button').textContent = config.cta_button_text || defaultConfig.cta_button_text;
+
+        const contactEmail = config.contact_email || defaultConfig.contact_email;
+        const contactPhone = config.contact_phone || defaultConfig.contact_phone;
+        const contactAddress = config.contact_address || defaultConfig.contact_address;
+
+        document.getElementById('contact-info-email').textContent = contactEmail;
+        document.getElementById('contact-info-email').href = `mailto:${contactEmail}`;
+
+        document.getElementById('contact-info-phone').textContent = contactPhone;
+        document.getElementById('contact-info-phone').href = `tel:${contactPhone.replace(/[^+\d]/g, '')}`;
+
+        document.getElementById('contact-info-address').innerHTML = (contactAddress).replace(/\n/g, '<br>');
+        document.getElementById('footer-company-name').textContent = config.company_name || defaultConfig.company_name;
+        document.getElementById('footer-copyright').textContent = config.footer_text || defaultConfig.footer_text;
+        document.getElementById('footer-contact-email').textContent = `Email: ${contactEmail}`;
+        document.getElementById('footer-contact-phone').textContent = `Phone: ${contactPhone}`;
+
+        document.getElementById('about-description').textContent = config.about_description || defaultConfig.about_description;
+        document.getElementById('about-mission').textContent = config.about_mission || defaultConfig.about_mission;
+
+        const customFont = config.font_family || defaultConfig.font_family;
+        const baseFontStack = 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif';
+        document.body.style.fontFamily = `'${customFont}', ${baseFontStack}`;
+    }
+
+    function navigateTo(pageId) {
+        const pageSections = document.querySelectorAll('.page-section');
+        pageSections.forEach(section => section.classList.remove('active'));
+
+        const targetSection = document.getElementById(pageId + (pageId === 'home' || pageId === 'about' || pageId === 'services' || pageId === 'portfolio' || pageId === 'blog' || pageId === 'testimonials' || pageId === 'careers' || pageId === 'contact' ? '-page' : ''));
+
+        if (pageId === 'clients-management' && isAdmin) { // NEW CLIENTS MANAGEMENT PAGE
+            document.getElementById('clients-management-page').classList.add('active');
+            renderAdminClients();
+        } else if (pageId === 'admin-dashboard' && isAdmin) {
+            document.getElementById('admin-dashboard-page').classList.add('active');
+            switchDashboardTab('overview');
+            renderDashboardOverview();
+        } else if (targetSection) {
+            targetSection.classList.add('active');
+        } else {
+            // Fallback to home if page not found
+            document.getElementById('home-page').classList.add('active');
+        }
+
+        // Close mobile menu
+        document.getElementById('mobile-menu').classList.remove('active');
+        window.scrollTo(0, 0);
+    }
+
+    function toggleMobileMenu() {
+        document.getElementById('mobile-menu').classList.toggle('active');
+    }
+
+    function handleLogoClick() {
+        logoClickCount++;
+        clearTimeout(logoClickTimer);
+        logoClickTimer = setTimeout(() => {
+            logoClickCount = 0;
+        }, 1000);
+
+        if (logoClickCount === 3) {
+            showAdminLogin();
+            logoClickCount = 0;
+        } else {
+            navigateTo('home');
+        }
+    }
+
+    function showAuthModal() {
+        document.getElementById('auth-modal').classList.add('active');
+        // Reset to customer signin view
+        showSignin();
+    }
+
+    function closeAuthModal() {
+        document.getElementById('auth-modal').classList.remove('active');
+    }
+
+    function showSignin() {
+        document.getElementById('auth-modal-title').textContent = 'Welcome Back';
+        document.getElementById('customer-signin-section').classList.remove('hidden');
+        document.getElementById('customer-signup-section').classList.add('hidden');
+        document.getElementById('admin-login-section').classList.add('hidden');
+    }
+
+    function showSignup() {
+        document.getElementById('auth-modal-title').textContent = 'Create Account';
+        document.getElementById('customer-signin-section').classList.add('hidden');
+        document.getElementById('customer-signup-section').classList.remove('hidden');
+        document.getElementById('admin-login-section').classList.add('hidden');
+    }
+
+    function showAdminLogin() {
+        closeAuthModal(); // Close if open
+        document.getElementById('auth-modal').classList.add('active');
+        document.getElementById('auth-modal-title').textContent = 'Admin Access Required';
+        document.getElementById('customer-signin-section').classList.add('hidden');
+        document.getElementById('customer-signup-section').classList.add('hidden');
+        document.getElementById('admin-login-section').classList.remove('hidden');
+    }
+
+    function updateAuthButtonForCustomer(user) {
+        document.getElementById('auth-button').innerHTML = `
+            <i class="fas fa-user mr-2"></i>${user.name}
+        `;
+        document.getElementById('auth-button-mobile').innerHTML = `
+            <i class="fas fa-user mr-2"></i>${user.name}
+        `;
+        document.getElementById('auth-button').onclick = handleCustomerLogout;
+        document.getElementById('auth-button-mobile').onclick = handleCustomerLogout;
+    }
+
+    function updateAuthButtonForAdmin() {
+        document.getElementById('auth-button').innerHTML = `
+            <span class="admin-badge mr-2">ADMIN</span> <i class="fas fa-user-shield mr-2"></i>${currentUser.name}
+        `;
+        document.getElementById('auth-button-mobile').innerHTML = `
+            <span class="admin-badge mr-2">ADMIN</span> <i class="fas fa-user-shield mr-2"></i>${currentUser.name}
+        `;
+        document.getElementById('auth-button').onclick = handleLogout;
+        document.getElementById('auth-button-mobile').onclick = handleLogout;
+    }
+
+    function handleLogout() {
+        currentUser = null;
+        isAdmin = false;
+        localStorage.removeItem('currentUser');
+
+        // Revert auth button to default
+        document.getElementById('auth-button').innerHTML = `<i class="fas fa-sign-in-alt mr-2"></i>Sign In`;
+        document.getElementById('auth-button-mobile').innerHTML = `<i class="fas fa-sign-in-alt mr-2"></i>Sign In`;
+        document.getElementById('auth-button').onclick = showAuthModal;
+        document.getElementById('auth-button-mobile').onclick = showAuthModal;
+
+        // Hide admin controls
+        document.querySelectorAll('[id$="-admin-controls"]').forEach(el => { el.classList.add('hidden'); });
+        document.getElementById('floating-action').classList.add('hidden');
+        document.getElementById('edit-contact-info-btn').classList.add('hidden');
+
+        // Navigate back to home or contact
+        navigateTo('home');
+        showToast('Logged out successfully.');
+    }
+
+    function handleCustomerLogout() {
+        handleLogout();
+    }
+
+    // Admin Login Form Handler
+    document.getElementById('admin-login-form').addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const username = document.getElementById('admin-username').value;
+        const password = document.getElementById('admin-password').value;
+
+        const loginText = document.getElementById('admin-login-text');
+        const loginLoading = document.getElementById('admin-login-loading');
+        loginText.classList.add('hidden');
+        loginLoading.classList.remove('hidden');
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Simulating a secure password check using Base64 encoding (not truly secure)
+        const hashedPassword = btoa(password);
+
+        if (username === 'admin' && (password === 'admin123' || hashedPassword === btoa('admin123'))) {
+            currentUser = {
+                name: 'Admin User',
+                email: 'admin@metaminds.com',
+                type: 'admin'
+            };
+            isAdmin = true;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            // Clear login form fields for security
+            document.getElementById('admin-username').value = '';
+            document.getElementById('admin-password').value = '';
+
+            // Update auth button for admin
+            updateAuthButtonForAdmin();
+
+            // Show admin controls
+            document.querySelectorAll('[id$="-admin-controls"]').forEach(el => { el.classList.remove('hidden'); });
+            // Show floating action button
+            document.getElementById('floating-action').classList.remove('hidden');
+            // Show edit contact info button
+            document.getElementById('edit-contact-info-btn').classList.remove('hidden');
+
+            closeAuthModal();
+
+            // Navigate to admin dashboard
+            navigateTo('admin-dashboard');
+            showToast('Welcome, Admin! Redirecting to your dashboard...');
+        } else {
+            // Clear fields on failed login attempt
+            document.getElementById('admin-username').value = '';
+            document.getElementById('admin-password').value = '';
+            showToast('Invalid credentials. Please try again.');
+        }
+
+        loginText.classList.remove('hidden');
+        loginLoading.classList.add('hidden');
+    });
+
+    // Toggle password visibility function
+    function togglePasswordVisibility(id, button) {
+        const input = document.getElementById(id);
+        const icon = button.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+
+    // Toast notification system
+    function showToast(message, duration = 3000) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        toastMessage.textContent = message;
+        toast.classList.add('active');
+
+        setTimeout(() => {
+            toast.classList.remove('active');
+        }, duration);
+    }
+
+    // Modal utility
+    function closeModal(modalElement) {
+        modalElement.classList.remove('active');
+    }
+
+    // --- Content Rendering Functions ---
+
+    function renderServices() {
+        const overviewGrid = document.getElementById('services-overview-grid');
+        const servicesGrid = document.getElementById('services-grid');
+        const serviceItems = allData.filter(item => item.type === 'service');
+
+        if (overviewGrid) {
+            const overviewHtml = serviceItems.slice(0, 3).map(item => `
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up" data-category="${item.category}" onclick="showServiceModal('${item.__backendId}')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in"><i class="${item.icon} text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">${item.title}</h3>
+                    <p class="text-gray-600">${item.description.substring(0, 70)}...</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> ${item.tagline} </div>
+                </div>
+            `).join('');
+            overviewGrid.innerHTML = overviewHtml;
+        }
+
+        if (servicesGrid) {
+            // Initial render for the main services page includes all items
+            servicesGrid.innerHTML = serviceItems.map(item => `
+                <div class="card p-8 hover-lift hover-glow cursor-pointer service-item animate-fade-in-up" data-category="${item.category}" onclick="showServiceModal('${item.__backendId}')">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 animate-rotate-in"><i class="${item.icon} text-white text-2xl"></i> </div>
+                    <h3 class="text-2xl font-bold mb-4">${item.title}</h3>
+                    <p class="text-gray-600">${item.description.substring(0, 70)}...</p>
+                    <div class="mt-4 text-sm text-blue-600 font-semibold"> ${item.tagline} </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // NEW RENDER CLIENTS FUNCTION
+    function renderClients() {
+        const clientsGrid = document.getElementById('clients-grid');
+        const clientsEmptyState = document.getElementById('clients-empty-state');
+        if (!clientsGrid || !clientsEmptyState) return;
+
+        const clientItems = allData.filter(item => item.type === 'client');
+
+        if (clientItems.length === 0) {
+            // Ensure the empty state is visible when no clients
+            clientsGrid.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-handshake text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Clients Added Yet</h3>
+                    <p class="text-gray-400">Our esteemed client list will be displayed here.</p>
+                </div>
+            `;
+            return;
+        }
+
+        clientsGrid.innerHTML = clientItems.map(item => `
+            <div class="p-4 rounded-xl hover-lift hover-glow cursor-pointer transition-all duration-300 w-full flex flex-col items-center justify-center">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-100 rounded-full flex items-center justify-center mb-2 md:mb-4 shadow-inner">
+                    <i class="${item.logo} text-3xl md:text-4xl text-blue-600 animate-scale-in" title="${item.title}"></i>
+                </div>
+                <p class="text-xs sm:text-sm font-semibold text-gray-700 text-center">${item.title}</p>
+            </div>
+        `).join('');
+    }
+
+    function renderPortfolio() {
+        const portfolioGrid = document.getElementById('portfolio-grid');
+        if (!portfolioGrid) return;
+        const portfolioItems = allData.filter(item => item.type === 'portfolio');
+
+        if (portfolioItems.length === 0) {
+            portfolioGrid.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-briefcase text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Projects Yet</h3>
+                    <p class="text-gray-400">Amazing projects will appear here once added.</p>
+                </div>
+            `;
+            return;
+        }
+
+        portfolioGrid.innerHTML = portfolioItems.map(item => `
+            <div class="card p-6 hover-lift cursor-pointer" onclick="showProjectModal('${item.__backendId}')">
+                <div class="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-image text-4xl text-blue-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                <p class="text-gray-600 mb-4">${item.content.substring(0, 100)}...</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-blue-600 font-medium">${item.category || 'General'}</span>
+                    ${isAdmin ? `<button onclick="event.stopPropagation(); editContent('${item.__backendId}')" class="text-gray-500 hover:text-blue-600"><i class="fas fa-edit"></i></button>` : ''}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderBlog() {
+        const blogGrid = document.getElementById('blog-grid');
+        if (!blogGrid) return;
+        const blogItems = allData.filter(item => item.type === 'blog');
+
+        if (blogItems.length === 0) {
+            blogGrid.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-blog text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Blog Posts Yet</h3>
+                    <p class="text-gray-400">Blog articles will appear here once published.</p>
+                </div>
+            `;
+            return;
+        }
+
+        blogGrid.innerHTML = blogItems.map(item => `
+            <div class="card p-6 hover-lift">
+                <div class="aspect-video bg-gradient-to-br from-green-100 to-blue-100 rounded-lg mb-4 flex items-center justify-center">
+                    <i class="fas fa-newspaper text-4xl text-green-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                <p class="text-gray-600 mb-4">${item.content.substring(0, 100)}...</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-green-600 font-medium">${item.author || 'MetaMinds Team'}</span>
+                    ${isAdmin ? `<button onclick="editContent('${item.__backendId}')" class="text-gray-500 hover:text-blue-600"><i class="fas fa-edit"></i></button>` : ''}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderTestimonials() {
+        const testimonialsGrid = document.getElementById('testimonials-grid');
+        if (!testimonialsGrid) return;
+        const testimonialItems = allData.filter(item => item.type === 'testimonial');
+
+        if (testimonialItems.length === 0) {
+            testimonialsGrid.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-star text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Testimonials Yet</h3>
+                    <p class="text-gray-400">Client feedback will appear here once added.</p>
+                </div>
+            `;
+            return;
+        }
+
+        testimonialsGrid.innerHTML = testimonialItems.map(item => `
+            <div class="card p-6 border-l-4 border-purple-500 bg-purple-50 hover-lift">
+                <div class="flex text-yellow-500 mb-3">${'<i class="fas fa-star"></i>'.repeat(item.rating || 5)}</div>
+                <p class="text-gray-700 italic mb-4">"${item.content}"</p>
+                <div class="flex justify-between items-center">
+                    <p class="font-bold text-purple-600">- ${item.author}</p>
+                    ${isAdmin ? `<button onclick="editContent('${item.__backendId}')" class="text-gray-500 hover:text-blue-600"><i class="fas fa-edit"></i></button>` : ''}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderCareers() {
+        const careersGrid = document.getElementById('careers-grid');
+        const applicantPositionSelect = document.getElementById('applicant-position');
+        if (!careersGrid || !applicantPositionSelect) return;
+        const careerItems = allData.filter(item => item.type === 'career');
+
+        if (careerItems.length === 0) {
+            careersGrid.innerHTML = `
+                <div class="text-center py-8">
+                    <i class="fas fa-users text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Openings</h3>
+                    <p class="text-gray-400">Check back soon for new career opportunities!</p>
+                </div>
+            `;
+            applicantPositionSelect.innerHTML = `<option value="">No Openings Available</option>`;
+            return;
+        }
+
+        // Render to careers grid
+        careersGrid.innerHTML = careerItems.map(item => `
+            <div class="card p-6 hover-lift">
+                <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                <p class="text-gray-600 mb-4">${item.content.substring(0, 100)}...</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-teal-600 font-medium">${item.category || 'Full-time'} | ${item.location || 'Remote'}</span>
+                    ${isAdmin ? `<button onclick="editContent('${item.__backendId}')" class="text-gray-500 hover:text-blue-600"><i class="fas fa-edit"></i></button>` : ''}
+                </div>
+            </div>
+        `).join('');
+
+        // Populate the application form select
+        applicantPositionSelect.innerHTML = `<option value="">Select a Position</option>` + careerItems.map(item => `
+            <option value="${item.title}">${item.title} - ${item.location}</option>
+        `).join('');
+    }
+
+    function renderContacts() {
+        const contactsList = document.getElementById('admin-contacts-list');
+        if (!contactsList || !isAdmin) return;
+
+        // Combine contacts, service-requests, and applications
+        const contactItems = allData.filter(item =>
+            item.type === 'contact' || item.type === 'service-request' || item.type === 'application'
+        ).sort((a, b) => b.__backendId.localeCompare(a.__backendId)); // Sort by ID for recency
+
+        notificationCount = contactItems.filter(item => item.status === 'new').length;
+        document.getElementById('contacts-badge').textContent = notificationCount;
+        document.getElementById('notification-dot').classList.toggle('hidden', notificationCount === 0);
+
+        if (contactItems.length === 0) {
+            contactsList.innerHTML = `
+                <div class="text-center py-8 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">Inbox Empty</h3>
+                    <p class="text-gray-400">No new inquiries or applications at this time.</p>
+                </div>
+            `;
+            return;
+        }
+
+        contactsList.innerHTML = contactItems.map(item => {
+            const typeMap = {
+                'contact': { icon: 'fas fa-envelope text-blue-600', title: 'General Inquiry', link: '#' },
+                'service-request': { icon: 'fas fa-cogs text-orange-600', title: 'Service Request', link: '#' },
+                'application': { icon: 'fas fa-user-tie text-teal-600', title: 'Job Application', link: '#' }
+            };
+            const typeInfo = typeMap[item.type] || { icon: 'fas fa-question text-gray-600', title: 'Unknown Type', link: '#' };
+            const priorityClass = item.priority ? `priority-${item.priority}` : '';
+            const statusClass = item.status ? `status-${item.status}` : '';
+
+            return `
+                <div class="card p-4 hover-lift ${priorityClass} ${statusClass}">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <i class="${typeInfo.icon} text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-lg">${item.title}</p>
+                                <p class="text-sm text-gray-500">${item.author} - ${typeInfo.title}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-xs font-semibold px-2 py-1 rounded-full ${statusClass}">${item.status.toUpperCase()}</span>
+                            <button onclick="markAsRead('${item.__backendId}')" class="text-gray-500 hover:text-blue-600 p-2 rounded-full hover:bg-blue-50" title="Mark as Read"><i class="fas fa-check"></i></button>
+                            <button onclick="deleteContent('${item.__backendId}')" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm italic border-t pt-2">${item.content.substring(0, 150)}...</p>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // NEW RENDER ADMIN CLIENTS FUNCTION
+    function renderAdminClients() {
+        const clientsList = document.getElementById('clients-admin-list');
+        if (!clientsList || !isAdmin) return;
+        const clientItems = allData.filter(item => item.type === 'client');
+
+        if (clientItems.length === 0) {
+            clientsList.innerHTML = `
+                <div class="text-center py-8 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-handshake text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Clients to Manage</h3>
+                    <p class="text-gray-400">Click 'Add New Client' to get started.</p>
+                </div>
+            `;
+            return;
+        }
+
+        clientsList.innerHTML = clientItems.map(item => `
+            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md border-l-4 border-blue-500">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="${item.logo} text-lg text-blue-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-lg">${item.title}</p>
+                        <p class="text-sm text-gray-500">${item.industry || 'General'}</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="editContent('${item.__backendId}')" class="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-full hover:bg-blue-50" title="Edit Client">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button onclick="deleteContent('${item.__backendId}')" class="text-red-600 hover:text-red-800 transition-colors p-2 rounded-full hover:bg-red-50" title="Delete Client">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+
+    function renderAdminProjectsList(searchTerm = '', filterType = '') {
+        const listContainer = document.getElementById('admin-projects-list');
+        if (!listContainer || !isAdmin) return;
+
+        let filteredItems = allData.filter(item =>
+            item.type === 'portfolio' || item.type === 'blog' || item.type === 'testimonial' || item.type === 'career' || item.type === 'client' // Include client
+        ).sort((a, b) => b.__backendId.localeCompare(a.__backendId));
+
+        if (filterType) {
+            filteredItems = filteredItems.filter(item => item.type === filterType);
+        }
+
+        if (searchTerm) {
+            const term = searchTerm.toLowerCase();
+            filteredItems = filteredItems.filter(item =>
+                (item.title && item.title.toLowerCase().includes(term)) ||
+                (item.content && item.content.toLowerCase().includes(term)) ||
+                (item.author && item.author.toLowerCase().includes(term)) ||
+                (item.client && item.client.toLowerCase().includes(term))
+            );
+        }
+
+        if (filteredItems.length === 0) {
+            listContainer.innerHTML = `
+                <div class="text-center py-8 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">No Content Found</h3>
+                    <p class="text-gray-400">Try a different search term or filter.</p>
+                </div>
+            `;
+            return;
+        }
+
+        listContainer.innerHTML = filteredItems.map(item => {
+            const typeMap = {
+                'portfolio': { icon: 'fas fa-briefcase text-blue-600', color: 'blue', typeLabel: 'Project' },
+                'blog': { icon: 'fas fa-newspaper text-green-600', color: 'green', typeLabel: 'Article' },
+                'testimonial': { icon: 'fas fa-star text-purple-600', color: 'purple', typeLabel: 'Review' },
+                'career': { icon: 'fas fa-users text-orange-600', color: 'orange', typeLabel: 'Job' },
+                'client': { icon: 'fas fa-handshake text-red-600', color: 'red', typeLabel: 'Client' } // New client type
+            };
+            const typeInfo = typeMap[item.type] || { icon: 'fas fa-question text-gray-600', color: 'gray', typeLabel: 'Unknown' };
+
+            return `
+                <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md border-l-4 border-${typeInfo.color}-500">
+                    <div class="flex items-center gap-4">
+                        <i class="${typeInfo.icon} text-2xl"></i>
+                        <div>
+                            <p class="font-bold text-lg">${item.title}</p>
+                            <p class="text-sm text-gray-500">${typeInfo.typeLabel} | ID: ${item.__backendId}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editContent('${item.__backendId}')" class="text-${typeInfo.color}-600 hover:text-${typeInfo.color}-800 transition-colors p-2 rounded-full hover:bg-${typeInfo.color}-50" title="Edit Content">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteContent('${item.__backendId}')" class="text-red-600 hover:text-red-800 transition-colors p-2 rounded-full hover:bg-red-50" title="Delete Content">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Admin Search/Filter Handlers
+    document.getElementById('admin-search').addEventListener('input', (e) => {
+        renderAdminProjectsList(e.target.value, document.getElementById('admin-filter-type').value);
+    });
+
+    document.getElementById('admin-filter-type').addEventListener('change', (e) => {
+        renderAdminProjectsList(document.getElementById('admin-search').value, e.target.value);
+    });
+
+    function clearAdminSearch() {
+        document.getElementById('admin-search').value = '';
+        document.getElementById('admin-filter-type').value = '';
+        renderAdminProjectsList();
+    }
+
+
+    // --- Dashboard Functions ---
+
+    function switchDashboardTab(tabName) {
+        document.querySelectorAll('.dashboard-tab-content').forEach(content => content.classList.add('hidden'));
+        document.querySelectorAll('.dashboard-tab').forEach(tab => {
+            tab.classList.remove('active', 'border-blue-500', 'text-blue-600');
+            tab.classList.add('border-transparent', 'text-gray-500');
+        });
+
+        // Set new active tab
+        const activeTab = document.querySelector(`[onclick="switchDashboardTab('${tabName}')"]`);
+        const activeContent = document.getElementById(`dashboard-${tabName}`);
+
+        if (activeTab) {
+            activeTab.classList.add('active', 'border-blue-500', 'text-blue-600');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+        }
+        if (activeContent) {
+            activeContent.classList.remove('hidden');
+        }
+
+        // Render content specific to the tab
+        if (tabName === 'overview') {
+            renderDashboardOverview();
+        } else if (tabName === 'projects') {
+            renderAdminProjectsList();
+        } else if (tabName === 'contacts') {
+            renderContacts(); // Make sure latest contacts are shown
+        }
+    }
+
+    function renderDashboardOverview() {
+        const overviewGrid = document.getElementById('overview-grid');
+        if (!overviewGrid || !isAdmin) return;
+
+        // Calculate metrics
+        const totalProjects = allData.filter(item => item.type === 'portfolio').length;
+        const totalBlogPosts = allData.filter(item => item.type === 'blog').length;
+        const totalTestimonials = allData.filter(item => item.type === 'testimonial').length;
+        const totalClients = allData.filter(item => item.type === 'client').length; // NEW CLIENTS METRIC
+        const totalCareers = allData.filter(item => item.type === 'career').length;
+        const totalInquiries = allData.filter(item => item.type === 'contact' || item.type === 'service-request' || item.type === 'application').length;
+        const newInquiries = allData.filter(item => (item.type === 'contact' || item.type === 'service-request' || item.type === 'application') && item.status === 'new').length;
+
+        let overviewHtml = '';
+
+        // Projects Card
+        overviewHtml += `
+            <div class="card p-6 border-l-4 border-blue-500 bg-blue-50 hover-lift animate-fade-in-up" onclick="switchDashboardTab('projects')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Total Projects</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">${totalProjects}</p>
+                    </div>
+                    <i class="fas fa-briefcase text-4xl text-blue-400 opacity-50"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Manage your portfolio</p>
+            </div>
+        `;
+
+        // Blog Posts Card
+        overviewHtml += `
+            <div class="card p-6 border-l-4 border-green-500 bg-green-50 hover-lift animate-fade-in-up animate-delay-100" onclick="navigateTo('blog')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Blog Posts</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">${totalBlogPosts}</p>
+                    </div>
+                    <i class="fas fa-newspaper text-4xl text-green-400 opacity-50"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Write and edit articles</p>
+            </div>
+        `;
+
+        // Clients Card - NEW METRIC
+        overviewHtml += `
+            <div class="card p-6 border-l-4 border-red-500 bg-red-50 hover-lift animate-fade-in-up animate-delay-700" onclick="navigateTo('clients-management')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Total Clients</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">${totalClients}</p>
+                    </div>
+                    <i class="fas fa-handshake text-4xl text-red-400 opacity-50"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Manage your client list</p>
+            </div>
+        `;
+
+        // Inquiries Card
+        overviewHtml += `
+            <div class="card p-6 border-l-4 border-yellow-500 bg-yellow-50 hover-lift animate-fade-in-up animate-delay-200" onclick="switchDashboardTab('contacts')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">New Inquiries</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">${newInquiries} <span class="text-base font-normal text-gray-500">/${totalInquiries}</span></p>
+                    </div>
+                    <i class="fas fa-inbox text-4xl text-yellow-400 opacity-50"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">View contact messages & applications</p>
+            </div>
+        `;
+
+        overviewGrid.innerHTML = overviewHtml;
+
+        // Update storage metrics
+        const storageTotal = document.getElementById('storage-total');
+        const storageBar = document.getElementById('storage-bar');
+        const storageSize = document.getElementById('storage-size');
+
+        const maxItems = 999;
+        const totalItems = allData.length;
+        const usagePercentage = Math.min(100, (totalItems / maxItems) * 100);
+
+        // Simple proxy for data size (1 item = ~2KB)
+        const dataSizeKB = (totalItems * 2).toFixed(1);
+
+        storageTotal.textContent = `${totalItems}/${maxItems}`;
+        storageBar.style.width = `${usagePercentage}%`;
+        storageSize.textContent = `${dataSizeKB} KB`;
+    }
+
+    // --- Form Handlers ---
+
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (allData.length >= 999) { showToast('Maximum limit of 999 items reached. Please delete some items first.'); return; }
+
+        const submitText = document.getElementById('contact-submit-text');
+        const submitLoading = document.getElementById('contact-submit-loading');
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+
+        const contactData = {
+            type: 'contact',
+            title: `Inquiry from ${document.getElementById('contact-name').value}`,
+            content: document.getElementById('contact-message').value,
+            author: document.getElementById('contact-name').value,
+            priority: document.getElementById('contact-priority').value,
+            status: 'new',
+            email: document.getElementById('contact-email').value,
+            phone: document.getElementById('contact-phone').value,
+            date: new Date().toISOString()
+        };
+
+        contactData.__backendId = 'co' + Date.now();
+        allData.push(contactData);
+        await data_sdk.set(allData);
+
+        document.getElementById('contact-form').reset();
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+        showToast('Your message has been sent successfully! We will be in touch shortly.');
+        renderContacts(); // Update admin inbox badge
+        renderDashboardOverview();
+    });
+
+    document.getElementById('career-application-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (allData.length >= 999) { showToast('Maximum limit of 999 items reached. Please delete some items first.'); return; }
+
+        const submitText = document.getElementById('career-submit-text');
+        const submitLoading = document.getElementById('career-submit-loading');
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+
+        const position = document.getElementById('applicant-position').value;
+        const firstName = document.getElementById('applicant-first-name').value;
+        const lastName = document.getElementById('applicant-last-name').value;
+        const email = document.getElementById('applicant-email').value;
+
+        const applicationData = {
+            type: 'application',
+            title: `Application for ${position}`,
+            content: `Cover Letter: ${document.getElementById('cover-letter').value}. | Salary Expectation: ${document.getElementById('salary-expectation').value || 'Not provided'} | Start Date: ${document.getElementById('start-date').value || 'Flexible'}`,
+            author: `${firstName} ${lastName}`,
+            priority: 'medium',
+            status: 'new',
+            email: email,
+            phone: document.getElementById('applicant-phone').value,
+            date: new Date().toISOString()
+        };
+
+        // Simulate resume upload/storage
+        const resumeFile = document.getElementById('resume-upload').files[0];
+        if (resumeFile) {
+            // In a real application, this file would be uploaded to a server/storage
+            applicationData.resume_filename = resumeFile.name;
+        }
+
+        applicationData.__backendId = 'ap' + Date.now();
+        allData.push(applicationData);
+        await data_sdk.set(allData);
+
+        document.getElementById('career-application-form').reset();
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+        showToast(`Thank you, ${firstName}! Your application for ${position} has been submitted.`);
+        renderContacts();
+        renderDashboardOverview();
+    });
+
+    document.getElementById('edit-contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitText = document.getElementById('contact-edit-submit-text');
+        const submitLoading = document.getElementById('contact-edit-submit-loading');
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+
+        const configItem = allData.find(item => item.type === 'config');
+        if (!configItem) { showToast('Configuration item not found!'); return; }
+
+        configItem.contact_email = document.getElementById('edit-contact-email').value;
+        configItem.contact_phone = document.getElementById('edit-contact-phone').value;
+        configItem.contact_address = document.getElementById('edit-contact-address').value;
+
+        await data_sdk.set(allData);
+        applyConfig(configItem);
+
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+        closeModal(document.getElementById('edit-contact-modal'));
+        showToast('Contact information updated successfully!');
+    });
+
+    // NEW CLIENT FORM HANDLER
+    document.getElementById('client-form').addEventListener('submit', async(e) => {
+        e.preventDefault();
+        if (allData.length >= 999) { showToast('Maximum limit of 999 items reached. Please delete some items first.'); return; }
+
+        const submitText = document.getElementById('client-submit-text');
+        const submitLoading = document.getElementById('client-submit-loading');
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+
+        const clientId = document.getElementById('client-id').value;
+        const clientData = {
+            type: 'client',
+            title: document.getElementById('client-name').value,
+            logo: document.getElementById('client-logo-url').value,
+            industry: 'General', // Default, can be expanded
+        };
+
+        let toastMessage = '';
+
+        if (clientId) {
+            // Edit existing client
+            const index = allData.findIndex(item => item.__backendId === clientId);
+            if (index !== -1) {
+                allData[index] = {
+                    ...allData[index],
+                    ...clientData
+                };
+                await data_sdk.set(allData);
+                toastMessage = 'Client updated successfully!';
+            }
+        } else {
+            // Add new client
+            clientData.__backendId = 'cl' + Date.now();
+            allData.push(clientData);
+            await data_sdk.set(allData);
+            toastMessage = 'New client added successfully!';
+        }
+
+        // Re-render and close
+        renderClients();
+        renderAdminClients();
+        renderAdminProjectsList();
+        renderDashboardOverview();
+
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+        document.getElementById('add-edit-client-modal').classList.remove('active');
+        showToast(toastMessage);
+    });
+
+
+    // --- CRUD Utility Functions ---
+
+    function showAddPortfolioModal() { showAddContentModal('portfolio', 'Add New Project', 'Project Link (Optional)'); }
+    function showAddBlogModal() { showAddContentModal('blog', 'Add New Article', 'Article Link (Optional)'); }
+    function showAddTestimonialModal() { showAddContentModal('testimonial', 'Add New Testimonial', 'Source Link (Optional)'); }
+    function showAddJobModal() { showAddContentModal('career', 'Add New Job Opening', 'Apply Link (Optional)'); }
+    function showEditContactModal() {
+        if (!isAdmin) return;
+        const configItem = allData.find(item => item.type === 'config') || defaultConfig;
+        document.getElementById('edit-contact-email').value = configItem.contact_email || defaultConfig.contact_email;
+        document.getElementById('edit-contact-phone').value = configItem.contact_phone || defaultConfig.contact_phone;
+        document.getElementById('edit-contact-address').value = configItem.contact_address || defaultConfig.contact_address;
+        document.getElementById('edit-contact-modal').classList.add('active');
+    }
+
+    // NEW SHOW ADD CLIENT MODAL
+    function showAddClientModal() {
+        currentContentType = 'client';
+        document.getElementById('client-id').value = '';
+        document.getElementById('client-modal-title').textContent = 'Add New Client';
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-logo-url').value = 'fas fa-building';
+        document.getElementById('client-submit-text').textContent = 'Add Client';
+        document.getElementById('add-edit-client-modal').classList.add('active');
+    }
+
+    // Generic Modal Setup
+    function showAddContentModal(type, title, linkPlaceholder) {
+        currentContentType = type;
+        document.getElementById('content-id').value = '';
+        document.getElementById('content-type').value = type;
+        document.getElementById('content-modal-title').textContent = title;
+        document.getElementById('content-submit-text').textContent = `Add ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+
+        // Reset form fields
+        document.getElementById('content-form').reset();
+
+        // Set visibility based on type
+        const isPortfolio = type === 'portfolio';
+        const isTestimonial = type === 'testimonial';
+        const isBlog = type === 'blog';
+        const isCareer = type === 'career';
+
+        document.getElementById('content-author-field').classList.toggle('hidden', isCareer);
+        document.getElementById('content-link-field').classList.toggle('hidden', isTestimonial);
+
+        // Update category options
+        const categorySelect = document.getElementById('content-category');
+        categorySelect.innerHTML = '';
+        categorySelect.parentElement.classList.remove('hidden');
+
+        if (isPortfolio) {
+            categorySelect.innerHTML = `
+                <option value="web-design">Web Design</option>
+                <option value="seo">SEO</option>
+                <option value="content">Content Marketing</option>
+                <option value="social">Social Media</option>
+            `;
+        } else if (isBlog) {
+            categorySelect.innerHTML = `
+                <option value="seo">SEO</option>
+                <option value="social">Social Media</option>
+                <option value="content">Content Marketing</option>
+                <option value="analytics">Analytics</option>
+            `;
+        } else if (isCareer) {
+            categorySelect.innerHTML = `
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+            `;
+        } else if (isTestimonial) {
+            categorySelect.innerHTML = `
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+            `;
+            categorySelect.parentElement.querySelector('label').textContent = 'Rating';
+        } else {
+            categorySelect.parentElement.classList.add('hidden');
+        }
+
+        document.getElementById('content-link').placeholder = linkPlaceholder;
+        document.getElementById('content-description-field').querySelector('label').textContent = isTestimonial ? 'Testimonial Content' : 'Description/Content';
+
+        document.getElementById('add-edit-content-modal').classList.add('active');
+    }
+
+    async function editContent(id) {
+        if (!isAdmin) return;
+        const item = allData.find(d => d.__backendId === id);
+        if (!item) return;
+
+        currentContentType = item.type;
+
+        if (item.type === 'portfolio' || item.type === 'blog' || item.type === 'testimonial' || item.type === 'career') {
+            showAddContentModal(item.type, `Edit ${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`, item.type === 'portfolio' ? 'Project Link (Optional)' : 'Article Link (Optional)');
+
+            document.getElementById('content-id').value = item.__backendId;
+            document.getElementById('content-title').value = item.title;
+            document.getElementById('content-description').value = item.content;
+            document.getElementById('content-author').value = item.author || item.client || ''; // Use client for portfolio author field
+            document.getElementById('content-link').value = item.link || '';
+            document.getElementById('content-submit-text').textContent = `Update ${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`;
+
+            const categorySelect = document.getElementById('content-category');
+            if (item.type === 'testimonial') {
+                categorySelect.value = item.rating.toString();
+            } else {
+                categorySelect.value = item.category;
+            }
+
+            // Set the link field placeholder
+            const linkPlaceholderMap = {
+                'portfolio': 'Project Link (Optional)',
+                'blog': 'Article Link (Optional)',
+                'career': 'Apply Link (Optional)',
+                'testimonial': 'Source Link (Optional)'
+            };
+            document.getElementById('content-link').placeholder = linkPlaceholderMap[item.type];
+        } else if (item.type === 'client') { // HANDLE CLIENT EDIT
+            document.getElementById('client-id').value = item.__backendId;
+            document.getElementById('client-modal-title').textContent = 'Edit Client';
+            document.getElementById('client-name').value = item.title;
+            document.getElementById('client-logo-url').value = item.logo;
+            document.getElementById('client-submit-text').textContent = 'Update Client';
+            document.getElementById('add-edit-client-modal').classList.add('active');
+        } else if (item.type === 'config') {
+            showEditContactModal(); // Config is only for contact info in this version
+        }
+    }
+
+    document.getElementById('content-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitText = document.getElementById('content-submit-text');
+        const submitLoading = document.getElementById('content-submit-loading');
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+
+        const id = document.getElementById('content-id').value;
+        const type = document.getElementById('content-type').value;
+
+        const contentData = {
+            type: type,
+            title: document.getElementById('content-title').value,
+            content: document.getElementById('content-description').value,
+        };
+
+        const category = document.getElementById('content-category').value;
+        const author = document.getElementById('content-author').value;
+        const link = document.getElementById('content-link').value;
+
+        if (type === 'portfolio') {
+            contentData.category = category;
+            contentData.client = author;
+            contentData.link = link;
+        } else if (type === 'blog') {
+            contentData.category = category;
+            contentData.author = author;
+            contentData.link = link;
+            contentData.date = new Date().toISOString().substring(0, 10);
+        } else if (type === 'testimonial') {
+            contentData.rating = parseInt(category);
+            contentData.author = author;
+        } else if (type === 'career') {
+            contentData.category = category;
+            contentData.location = 'Remote'; // Simplified
+            contentData.date = new Date().toISOString().substring(0, 10);
+        }
+
+        let toastMessage = '';
+
+        if (id) {
+            // Edit existing content
+            const index = allData.findIndex(item => item.__backendId === id);
+            if (index !== -1) {
+                allData[index] = { ...allData[index], ...contentData };
+                await data_sdk.set(allData);
+                toastMessage = `${type.charAt(0).toUpperCase() + type.slice(1)} updated successfully!`;
+            }
+        } else {
+            // Add new content
+            contentData.__backendId = type.substring(0, 1) + Date.now();
+            allData.push(contentData);
+            await data_sdk.set(allData);
+            toastMessage = `New ${type.charAt(0).toUpperCase() + type.slice(1)} added successfully!`;
+        }
+
+        // Re-render all relevant sections
+        renderPortfolio();
+        renderBlog();
+        renderTestimonials();
+        renderCareers();
+        renderAdminProjectsList();
+        renderDashboardOverview();
+
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+        document.getElementById('add-edit-content-modal').classList.remove('active');
+        showToast(toastMessage);
+    });
+
+    async function deleteContent(id) {
+        if (!isAdmin || !confirm('Are you sure you want to delete this item?')) return;
+
+        const index = allData.findIndex(item => item.__backendId === id);
+        if (index !== -1) {
+            const type = allData[index].type;
+            allData.splice(index, 1);
+            await data_sdk.set(allData);
+            showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully!`);
+
+            // Re-render all necessary lists
+            renderPortfolio();
+            renderBlog();
+            renderTestimonials();
+            renderCareers();
+            renderContacts();
+            renderClients(); // Update client display
+            renderAdminClients(); // Update admin client list
+            renderAdminProjectsList();
+            renderDashboardOverview();
+        }
+    }
+
+    async function markAsRead(id) {
+        if (!isAdmin) return;
+
+        const item = allData.find(item => item.__backendId === id);
+        if (item && item.status === 'new') {
+            item.status = 'completed'; // Use 'completed' to signify 'read/handled'
+            await data_sdk.set(allData);
+            showToast(`Inquiry marked as read/handled.`);
+            renderContacts(); // Re-render the contact list
+            renderDashboardOverview();
+        }
+    }
+
+    async function clearAllData() {
+        if (!isAdmin || !confirm('WARNING: Are you sure you want to delete ALL content data? This action cannot be undone.')) return;
+
+        // Filter out the configuration item to keep site settings
+        const configItem = allData.find(item => item.type === 'config');
+        allData = configItem ? [configItem] : [];
+
+        await data_sdk.set(allData);
+
+        // Re-render everything
+        initializePage();
+        showToast('All non-configuration data has been cleared.');
+    }
+
+    // Project/Service Modals
+    function showServiceModal(id) {
+        // Find service by ID or a simplified lookup for the hardcoded services
+        const service = allData.find(item => item.type === 'service' && item.__backendId === id) ||
+                        defaultData.service.find(item => item.__backendId === id);
+
+        if (!service) return;
+
+        document.getElementById('service-modal-title').textContent = service.title;
+        document.getElementById('service-modal-tagline').textContent = service.tagline;
+        document.getElementById('service-modal-description').innerHTML = `<p>${service.description}</p>`;
+        document.getElementById('service-modal-icon').innerHTML = `<i class="${service.icon} text-white text-3xl"></i>`;
+
+        document.getElementById('service-modal').classList.add('active');
+    }
+
+    function showProjectModal(id) {
+        const project = allData.find(item => item.type === 'portfolio' && item.__backendId === id);
+        if (!project) return;
+
+        document.getElementById('project-modal-title').textContent = project.title;
+        document.getElementById('project-modal-client').textContent = project.client;
+        document.getElementById('project-modal-category').textContent = project.category.charAt(0).toUpperCase() + project.category.slice(1).replace('-', ' ');
+        document.getElementById('project-modal-description').textContent = project.content;
+        document.getElementById('project-modal-link').href = project.link || '#';
+        document.getElementById('project-modal-link').classList.toggle('hidden', !project.link);
+
+        document.getElementById('project-modal').classList.add('active');
+    }
+
+    // Initialize the app
+    window.onload = initializePage;
+</script>
+</body>
+
+</html>
